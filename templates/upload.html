@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UPLOAD ZONE</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+        function load() {
+            $(".uploadzone").hide();
+            $(".loading").show();
+        }
+
+        function shownoods() {
+            $(".loading").hide();
+            $(".uploadzone").show();
+        }
+        </script>
+
+        {{ dropzone.load() }}
+        {{ dropzone.style('border: 3px dashed #aaaaaa ; margin: 10%; min-height: 300px;') }}
+    </head>
+
+    <body onload="shownoods();">
+        <div class="uploadzone">
+            <h1 class="text-center">UPLOAD ZONE</h1>
+            {{ dropzone.create(action_view='upload') }}
+            <div class="text-center"><i>upload only .jpg .png .mp4 files</i></div>
+            <div class="text-center" style="padding: 50px 10px 50px">
+                <a href="{{ url_for('results') }}" class="btn btn-primary" role="button" onclick="load();">Predict Results</a>
+                <a href="{{ url_for('home') }}" class="btn btn-primary" role="button" onclick="load();">HOME</a>
+            </div>
+        </div>
+
+        <div class="loading">
+            <div class="text-center" style="padding: 100px 10px 50px">
+                <strong>LOADING..</strong>
+            </div>
+            <div class="text-center">
+                <div class="spinner-grow text-secondary"></div>
+                <div class="spinner-border text-dark"></div>
+                <div class="spinner-grow text-secondary"></div>
+                <div class="spinner-border text-dark"></div>
+                <div class="spinner-grow text-secondary"></div>
+            </div>
+        </div>
+    </body>
+</html>

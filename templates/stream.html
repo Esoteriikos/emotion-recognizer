@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stream</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="text-center">
+            <h1>Video Stream</h1>
+            <img src="{{ url_for('video_feed') }}">
+            <div class="text-center" style="padding: 50px 10px 50px">
+              <a href="{{ url_for('home') }}" class="btn btn-primary" role="button">HOME</a>
+            </div>
+        </div>
+    </body>
+</html>
