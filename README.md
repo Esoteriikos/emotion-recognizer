@@ -10,6 +10,7 @@ paste them in respective folders
 
 
 Requirements : 
+
 face-recognition==1.3.0
 Flask==1.1.1
 Flask-Dropzone==1.5.4
