@@ -1,9 +1,10 @@
 import os
 import secrets
-from img_vid_predict import image_predict, video_predict
-from camera_stream_keras import Camera
-from flask import Flask, render_template, request, send_from_directory, Response
 from flask_dropzone import Dropzone
+from camera_stream_keras import Camera
+from img_vid_predict import image_predict, video_predict
+from flask import Flask, render_template, request, send_from_directory, Response
+
 
 img_ext = ('.jpeg', '.jpg', '.png')
 vid_ext = ('.mp4')
@@ -20,9 +21,15 @@ app = Flask(__name__)
 app.config['DROPZONE_UPLOAD_MULTIPLE'] = True
 app.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
 app.config['DROPZONE_ALLOWED_FILE_TYPE'] = '.jpg, .jpeg, .png, .mp4'
-app.config['DROPZONE_UPLOAD_MULTIPLE'] = 'results'
 app.config['DROPZONE_MAX_FILE_SIZE'] = 100
 app.config['DROPZONE_MAX_FILE'] = 50
+
+# defaults
+# app.config['DROPZONE_INVALID_FILE_TYPE'] = "You can't upload files of this type."
+# app.config['DROPZONE_FILE_TOO_BIG'] = "File is too big {{filesize}}. Max filesize: {{maxFilesize}}MiB."
+# app.config['DROPZONE_SERVER_ERROR'] = "Server error: {{statusCode}}"
+# app.config['DROPZONE_BROWSER_UNSUPPORTED'] = "Your browser does not support drag'n'drop file uploads."
+# app.config['DROPZONE_MAX_FILE_EXCEED'] = 	"Your can't upload any more files."
 
 dropzone = Dropzone(app)
 
@@ -126,4 +133,4 @@ def video_feed():
 
 
 if __name__ == "__main__":
-    app.run(host='192.168.1.2', port=80, debug=True, threaded=True, use_reloader=False)
+    app.run(host='localhost', port=5000, debug=True, threaded=True, use_reloader=False)
