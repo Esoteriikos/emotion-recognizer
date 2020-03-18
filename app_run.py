@@ -56,8 +56,6 @@ def delete_content(folder):  # Every experience to be new
 @app.route("/upload", methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        delete_content(images_input_folder_path)
-        delete_content(videos_input_folder_path)
         # uploaded files object
         file_object = request.files
         # Multiple files. iterating through each
