@@ -1,3 +1,6 @@
+# Github : Miguel Grinberg
+# this code is dope 
+
 import time
 import threading
 try:
