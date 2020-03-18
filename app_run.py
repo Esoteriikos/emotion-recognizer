@@ -33,10 +33,24 @@ def home():
     return render_template('home.html')
 
 
+def delete_content(folder):  # Every experience to be new
+    """Since we dont want previous result to be shown again
+    or previous inputs to be process again"""
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            pass
+
+
 # Upload images videos zone
 @app.route("/upload", methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
+        delete_content(images_input_folder_path)
+        delete_content(videos_input_folder_path)
         # uploaded files object
         file_object = request.files
         # Multiple files. iterating through each
@@ -75,18 +89,6 @@ def send_video(filename):
 
 
 # To calculate results
-def delete_content(folder):  # Every experience to be new
-    """Since we dont want previous result to be shown again
-    or previous inputs to be process again"""
-    for filename in os.listdir(folder):
-        file_path = os.path.join(folder, filename)
-        try:
-            if os.path.isfile(file_path) or os.path.islink(file_path):
-                os.unlink(file_path)
-        except Exception as e:
-            pass
-
-
 @app.route("/results")
 def results():
     delete_content(images_output_folder_path)
