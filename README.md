@@ -28,4 +28,3 @@ In code we are using _model_195.h5_.
 - tensorboard==2.1.1
 - tensorflow==2.1.0
 
-###### Contact : [Email](s3071999@gmail.com)
