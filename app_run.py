@@ -55,6 +55,8 @@ def delete_content(folder):  # Every experience to be new
 # Upload images videos zone
 @app.route("/upload", methods=['GET', 'POST'])
 def upload():
+    delete_content(images_output_folder_path)
+    delete_content(videos_output_folder_path)
     if request.method == 'POST':
         # uploaded files object
         file_object = request.files
@@ -96,19 +98,21 @@ def send_video(filename):
 # To calculate results
 @app.route("/results")
 def results():
-    delete_content(images_output_folder_path)
     image_names = os.listdir(images_input_folder_path)
     image_predict(image_names, images_input_folder_path, images_output_folder_path)
     delete_content(images_input_folder_path)
 
-    delete_content(videos_output_folder_path)
     video_names = os.listdir(videos_input_folder_path)
     video_predict(video_names, videos_input_folder_path, videos_output_folder_path)
     delete_content(videos_input_folder_path)
 
     out_image_names = os.listdir(images_output_folder_path)
     out_video_names = os.listdir(videos_output_folder_path)
-    return render_template("results.html", image_names=out_image_names, video_names=out_video_names)
+    
+    flag = 0
+    if len(out_image_names) == 0 and len(out_video_names) == 0:
+        flag = 1
+    return render_template("results.html", image_names=out_image_names, video_names=out_video_names, flag=flag)
 
 
 # Web-cam Stream + real time predictions
