@@ -1,6 +1,8 @@
 # esoteriikos/emotion-recognizer
 **Input** - Image, video or webcam access.
+
 **Intermediate** - Find faces, model.predict to predict the emotion, and lastly annotate the face and predicted emotion onto the image
+
 **Output** - Images, Video, real time streaming (webcam) 
 
 ## Dataset : 
